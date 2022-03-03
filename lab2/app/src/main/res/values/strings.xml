@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">lab2</string>
+    <string name="select">Select Operation</string>
+    <string name="value_a">Value A:</string>
+    <string name="value_b">Value B:</string>
+    <string name="result">Result</string>
+    <string name="add">ADD</string>
+    <string name="subtract">SUBTRACT</string>
+    <string name="multiply">MULTIPLY</string>
+    <string name="divide">DIVIDE</string>
+    <string name="file">file</string>
+    <string name="create_new">New</string>
+    <string name="open">Open</string>
+    <string name="additional">Additional</string>
+    <string name="square">Square</string>
+    <string name="squareRoot">Square Root</string>
+</resources>

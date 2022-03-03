@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/add_item"
+        android:title="@string/add" />
+    <item android:id="@+id/subtract_item"
+        android:title="@string/subtract" />
+    <item android:id="@+id/multiply_item"
+        android:title="@string/multiply"/>
+    <item android:id="@+id/divide_item"
+        android:title="@string/divide" />
+    <item android:id="@+id/additional"
+        android:title="@string/additional" >
+        <!-- "file" submenu -->
+        <menu>
+            <item android:id="@+id/square"
+                android:title="@string/square" />
+            <item android:id="@+id/squareRoot"
+                android:title="@string/squareRoot" />
+        </menu>
+    </item>
+</menu>
