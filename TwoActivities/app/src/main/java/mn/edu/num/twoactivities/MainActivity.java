@@ -2,7 +2,9 @@ package mn.edu.num.twoactivities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -12,6 +14,8 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,14 +39,77 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d(LOG_TAG, "onSaveInstanceState "+mReplyHeadTextView.getVisibility() + " " + View.VISIBLE);
+        if (mReplyHeadTextView.getVisibility() == View.VISIBLE) {
+            Log.d(LOG_TAG, "text is visible");
+            outState.putBoolean("reply_visible", true);
+            outState.putString("reply_text", mReplyTextView.getText().toString());
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Log the start of the onCreate() method.
+        Log.d(LOG_TAG, "-------");
+        Log.d(LOG_TAG, "onCreate");
+
+        // Initialize all the view variables.
         mMessageEditText = findViewById(R.id.editText_main);
         mReplyHeadTextView = findViewById(R.id.text_header_reply);
         mReplyTextView = findViewById(R.id.text_message_reply);
+
+        // Restore the state.
+        if (savedInstanceState != null) {
+            boolean isVisible = savedInstanceState.getBoolean("reply_visible");
+            if (isVisible) {
+                mReplyHeadTextView.setVisibility(View.VISIBLE);
+                mReplyTextView.setText(savedInstanceState.getString("reply_text"));
+                mReplyTextView.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
+    @Override
+    public void onStart(){
+        super.onStart();
+        Log.d(LOG_TAG, "onStart");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(LOG_TAG, "onPause");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(LOG_TAG, "onRestart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(LOG_TAG, "onResume");
+    }
+
+    @Override
+    protected void onStop() {
+        Log.d(LOG_TAG, "onStop "+mReplyHeadTextView.getVisibility() + " " + View.VISIBLE);
+        super.onStop();
+        Log.d(LOG_TAG, "onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(LOG_TAG, "onDestroy");
     }
 
     public void launchSecondActivity(View view) {
@@ -51,8 +118,8 @@ public class MainActivity extends AppCompatActivity {
         String message = mMessageEditText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
         mStartForResult.launch(intent);
-        mMessageEditText.setText("");
-        //        startActivityForResult(intent, TEXT_REQUEST);
+//        mMessageEditText.setText("");
+//        startActivityForResult(intent, TEXT_REQUEST);
     }
 
 //    @Override
