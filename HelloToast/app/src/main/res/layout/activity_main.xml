@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="hellotoast.MainActivity">
+    tools:context="mn.edu.num.hellotoast.MainActivity">
 
     <Button
         android:id="@+id/button_toast"
@@ -14,7 +14,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorPrimary"
-        android:onClick="showToast"
+        android:onClick="sayHello"
         android:text="@string/button_label_toast"
         android:textColor="@android:color/white" />
 
