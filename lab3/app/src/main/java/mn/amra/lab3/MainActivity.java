@@ -113,5 +113,16 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, REQUEST_CODE_A2);
     }
 
-
+    private void callActivity2ViaOption() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.putExtra(CustomActivity2.EXTRA_OPTION1, mOption1);
+        intent.putExtra(CustomActivity2.EXTRA_OPTION2, mOption2);
+        intent.putExtra(CustomActivity2.EXTRA_OPTION3, mOption3);
+        intent.putExtra(CustomActivity2.EXTRA_DATE, mDatePicked);
+        try {
+            startActivityForResult(intent, REQUEST_CODE_A2);
+        } catch (android.content.ActivityNotFoundException exception) {
+            Toast.makeText(this, "There are no app installed to perform this request.", Toast.LENGTH_SHORT).show();
+        }
+    }
 }
