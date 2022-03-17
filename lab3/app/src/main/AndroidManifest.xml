@@ -10,19 +10,29 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lab3">
         <activity
-            android:label="Activity2"
-            android:name=".CustomActivity2"
-            android:exported="true">
-            <intent-filter android:label="Activity2">
+            android:name=".CustomActivity3"
+            android:exported="true"
+            android:label="Activity3">
+            <intent-filter android:label="Activity3">
                 <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
 
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:label="Activity1"
+            android:name=".CustomActivity2"
+            android:exported="true"
+            android:label="Activity2">
+            <intent-filter android:label="Activity2">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".CustomActivity1"
-            android:exported="true">
+            android:exported="true"
+            android:label="Activity1">
             <intent-filter android:label="Activity1">
                 <action android:name="android.intent.action.VIEW" />
 

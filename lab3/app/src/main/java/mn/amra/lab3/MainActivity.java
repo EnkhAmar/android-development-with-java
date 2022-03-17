@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
     public static final int REQUEST_CODE_A1 = 1;
     public static final int REQUEST_CODE_A2 = 2;
+    public static final int REQUEST_CODE_A3 = 3;
+    public static final int REQUEST_CODE_A4 = 4;
 
 
     @Override
@@ -124,5 +126,10 @@ public class MainActivity extends AppCompatActivity {
         } catch (android.content.ActivityNotFoundException exception) {
             Toast.makeText(this, "There are no app installed to perform this request.", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void callActivity3(View view) {
+        Intent intent = new Intent(this, CustomActivity3.class);
+        startActivity(intent);
     }
 }

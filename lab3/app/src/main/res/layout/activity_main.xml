@@ -51,7 +51,8 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:layout_margin="20dp"
         android:paddingVertical="30dp"
-        app:layout_constraintTop_toBottomOf="@+id/button_2" />
+        app:layout_constraintTop_toBottomOf="@+id/button_2"
+        android:onClick="callActivity3"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_4"

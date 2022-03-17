@@ -26,10 +26,10 @@ public class CustomActivity2 extends AppCompatActivity {
     private Date pickedDate;
 
     public static final String LOG_TAG = CustomActivity2.class.getSimpleName();
-    public static final String EXTRA_OPTION1 = "mn.edu.num.extra.OPTION1";
-    public static final String EXTRA_OPTION2 = "mn.edu.num.extra.OPTION2";
-    public static final String EXTRA_OPTION3 = "mn.edu.num.extra.OPTION3";
-    public static final String EXTRA_DATE = "mn.edu.mn.extra.DATE";
+    public static final String EXTRA_OPTION1 = "mn.amra.extra.OPTION1";
+    public static final String EXTRA_OPTION2 = "mn.amra.extra.OPTION2";
+    public static final String EXTRA_OPTION3 = "mn.amra.extra.OPTION3";
+    public static final String EXTRA_DATE = "mn.amra.extra.DATE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
