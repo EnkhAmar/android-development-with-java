@@ -11,6 +11,7 @@ import android.text.format.DateFormat;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TimePicker;
 
@@ -19,6 +20,7 @@ import java.util.Calendar;
 public class CustomActivity3 extends AppCompatActivity {
     private RadioButton radioButtonMale;
     private RadioButton radioButtonFemale;
+    private Button button_time;
     private Time pickedTime;
 
     public static final String LOG_TAG = CustomActivity3.class.getSimpleName();
@@ -33,6 +35,7 @@ public class CustomActivity3 extends AppCompatActivity {
 
         radioButtonMale = findViewById(R.id.radio_button_male);
         radioButtonFemale = findViewById(R.id.radio_button_female);
+        button_time = findViewById(R.id.button_pick_time);
     }
 
     public void onRadioButtonClicked(View view) {
