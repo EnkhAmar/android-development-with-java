@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CustomActivity1">
+
+    <TextView
+        android:id="@+id/text_name"
+        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="40dp"
+        android:gravity="left|top"
+        android:text="@string/text_name" />
+
+    <EditText
+        android:id="@+id/edit_text_name"
+        android:textSize="24sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|top"
+        android:hint="@string/edit_text_name"
+        android:layout_marginRight="40dp"
+        android:inputType="text"/>
+
+    <TextView
+        android:id="@+id/text_age"
+        android:textSize="24sp"
+        android:layout_marginLeft="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center"
+        android:text="@string/text_age" />
+
+    <EditText
+        android:id="@+id/edit_text_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|center"
+        android:hint="@string/edit_text_age"
+        android:textSize="24sp"
+        android:layout_marginRight="40dp"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/ok_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@android:string/ok"
+        android:textSize="16sp"
+        android:layout_marginHorizontal="40dp"
+        android:backgroundTint="@color/colorPink"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="70dp"
+        android:onClick="returnValues"/>
+
+    <Button
+        android:id="@+id/cancel_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@android:string/cancel"
+        android:textSize="16sp"
+        android:layout_marginHorizontal="40dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="30dp"
+        android:onClick="cancel"/>
+
+</FrameLayout>

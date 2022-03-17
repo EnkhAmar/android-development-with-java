@@ -11,4 +11,5 @@
     <color name="colorPink">#c2185b</color>
     <color name="colorGreen">#66bb6a</color>
     <color name="colorOrange">#ff9100</color>
+    <color name="colorGray">#808080</color>
 </resources>

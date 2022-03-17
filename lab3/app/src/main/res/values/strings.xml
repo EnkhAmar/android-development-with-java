@@ -2,4 +2,12 @@
     <string name="app_name">lab3</string>
     <string name="button_1_text">Call Activity 1</string>
     <string name="button_2_text">Call Activity 2</string>
+    <string name="text_name">Name</string>
+    <string name="edit_text_name">Enter Your Name Here</string>
+    <string name="text_age">Age</string>
+    <string name="edit_text_age">Enter Your Age Here</string>
+    <string name="todo1_text">Check server status</string>
+    <string name="todo2_text">Review pull requests</string>
+    <string name="todo3_text">Help junior developers</string>
+    <string name="button_datepick">Pick Date</string>
 </resources>

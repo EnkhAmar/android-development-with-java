@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingHorizontal="20dp"
+    android:gravity="center"
+    tools:context=".CustomActivity2">
+
+    <CheckBox
+        android:id="@+id/checkbox_todo1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/todo1_text"
+        android:textSize="24sp"
+        android:layout_marginHorizontal="40dp"
+        android:onClick="onCheckboxClicked"
+        android:layout_marginBottom="5dp"/>
+
+    <CheckBox
+        android:id="@+id/checkbox_todo2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/todo2_text"
+        android:textSize="24sp"
+        android:layout_marginHorizontal="40dp"
+        android:onClick="onCheckboxClicked"
+        android:layout_marginBottom="5dp"/>
+
+    <CheckBox
+        android:id="@+id/checkbox_todo3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/todo3_text"
+        android:textSize="24sp"
+        android:layout_marginHorizontal="40dp"
+        android:onClick="onCheckboxClicked"
+        android:layout_marginBottom="5dp"/>
+
+    <Button
+        android:id="@+id/button_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:textSize="16sp"
+        android:backgroundTint="@android:color/holo_blue_bright"
+        android:text="@string/button_datepick"
+        android:layout_marginBottom="25dp"
+        android:onClick="openDatePickerDialog"/>
+
+
+    <Button
+        android:id="@+id/ok_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@android:string/ok"
+        android:textSize="16sp"
+        android:layout_marginHorizontal="40dp"
+        android:backgroundTint="@color/colorPink"
+        android:layout_gravity="bottom"
+        android:onClick="returnValues"/>
+
+    <Button
+        android:id="@+id/cancel_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@android:string/cancel"
+        android:textSize="16sp"
+        android:layout_marginHorizontal="40dp"
+        android:backgroundTint="@android:color/darker_gray"
+        android:layout_gravity="bottom"
+        android:onClick="cancel"/>
+
+</LinearLayout>
