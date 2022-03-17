@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 callActivity1ViaOption();
                 return true;
             case R.id.item_2:
-                // handle
+                callActivity2ViaOption();
                 return true;
             case R.id.item_3:
                 // handle
