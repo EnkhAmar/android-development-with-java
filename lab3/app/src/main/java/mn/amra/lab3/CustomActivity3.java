@@ -5,8 +5,11 @@ import androidx.fragment.app.DialogFragment;
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateFormat;
+import android.text.format.Time;
+import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TimePicker;
@@ -14,11 +17,22 @@ import android.widget.TimePicker;
 import java.util.Calendar;
 
 public class CustomActivity3 extends AppCompatActivity {
+    private RadioButton radioButtonMale;
+    private RadioButton radioButtonFemale;
+    private Time pickedTime;
+
+    public static final String LOG_TAG = CustomActivity3.class.getSimpleName();
+    public static final String EXTRA_RADIO_BUTTON_MALE = "mn.amra.MALE";
+    public static final String EXTRA_RADIO_BUTTON_FEMALE = "mn.amra.FEMALE";
+    public static final String EXTRA_TIME = "mn.amra.exra.TIME";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom3);
+
+        radioButtonMale = findViewById(R.id.radio_button_male);
+        radioButtonFemale = findViewById(R.id.radio_button_female);
     }
 
     public void onRadioButtonClicked(View view) {
@@ -36,6 +50,17 @@ public class CustomActivity3 extends AppCompatActivity {
         }
     }
 
+    public void returnValues(View view) {
+        Intent intent = new Intent();
+
+        setResult(RESULT_OK, intent);
+        finish();
+    }
+
+    public void cancel(View view) {
+        finish();
+    }
+
     public static class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
         @Override
         public Dialog onCreateDialog (Bundle savedInstance) {
@@ -45,7 +70,7 @@ public class CustomActivity3 extends AppCompatActivity {
             return new TimePickerDialog(getActivity(), this, hour, minute, DateFormat.is24HourFormat(getActivity()));
         }
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
+            Log.d(LOG_TAG, "Hour: " + hourOfDay + " Minute: " + minute);
         }
     }
 
