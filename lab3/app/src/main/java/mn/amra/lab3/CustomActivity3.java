@@ -92,8 +92,6 @@ public class CustomActivity3 extends AppCompatActivity {
     }
 
     public void showTimePickerDialog(View view) {
-//        DialogFragment timePickerFragment = new TimePickerFragment();
-//        timePickerFragment.show(getSupportFragmentManager(), "timePicker");
         calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int minute = calendar.get(Calendar.MINUTE);

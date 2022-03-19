@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 callActivity2ViaOption();
                 return true;
             case R.id.item_3:
-                // handle
+                callActivity3ViaOption();
                 return true;
             case R.id.item_4:
                 // handle
@@ -145,5 +145,17 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(CustomActivity3.EXTRA_RADIO_BUTTON_FEMALE, mRadio2);
         intent.putExtra(CustomActivity3.EXTRA_TIME, mTimePicked);
         startActivityForResult(intent, REQUEST_CODE_A3);
+    }
+
+    public void callActivity3ViaOption() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.putExtra(CustomActivity3.EXTRA_RADIO_BUTTON_MALE, mRadio1);
+        intent.putExtra(CustomActivity3.EXTRA_RADIO_BUTTON_FEMALE, mRadio2);
+        intent.putExtra(CustomActivity3.EXTRA_TIME, mTimePicked);
+        try {
+            startActivityForResult(intent, REQUEST_CODE_A3);
+        } catch (android.content.ActivityNotFoundException exception) {
+            Toast.makeText(this, "There are no app installed to perform this request.", Toast.LENGTH_SHORT).show();
+        }
     }
 }
