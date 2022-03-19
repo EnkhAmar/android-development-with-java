@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     private Boolean mOption2 = false;
     private Boolean mOption3 = false;
     private Date mDatePicked = null;
+    private Boolean mRadio1 = false;
+    private Boolean mRadio2 = false;
+    private Date mTimePicked = null;
 
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
     public static final int REQUEST_CODE_A1 = 1;
@@ -92,6 +95,14 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(LOG_TAG, "Date picked: " + mDatePicked);
                 }
                 break;
+            case REQUEST_CODE_A3:
+                if (resultCode == RESULT_OK) {
+                    mRadio1 = data.getBooleanExtra(CustomActivity3.EXTRA_RADIO_BUTTON_MALE, mRadio1);
+                    mRadio2 = data.getBooleanExtra(CustomActivity3.EXTRA_RADIO_BUTTON_FEMALE, mRadio2);
+                    mTimePicked = (Date) data.getSerializableExtra(CustomActivity3.EXTRA_TIME);
+                    Log.d(LOG_TAG, "Time picked: " + mTimePicked);
+                }
+                break;
         }
     }
 
@@ -130,6 +141,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void callActivity3(View view) {
         Intent intent = new Intent(this, CustomActivity3.class);
-        startActivity(intent);
+        intent.putExtra(CustomActivity3.EXTRA_RADIO_BUTTON_MALE, mRadio1);
+        intent.putExtra(CustomActivity3.EXTRA_RADIO_BUTTON_FEMALE, mRadio2);
+        intent.putExtra(CustomActivity3.EXTRA_TIME, mTimePicked);
+        startActivityForResult(intent, REQUEST_CODE_A3);
     }
 }
