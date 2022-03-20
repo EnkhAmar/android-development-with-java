@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     private Boolean mRadio1 = false;
     private Boolean mRadio2 = false;
     private Date mTimePicked = null;
+    private Float mRating = (float) 0.0;
+    private Date mTimePicked2 = null;
 
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
     public static final int REQUEST_CODE_A1 = 1;
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 callActivity3ViaOption();
                 return true;
             case R.id.item_4:
-                // handle
+                callActivity4ViaOption();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -101,6 +103,12 @@ public class MainActivity extends AppCompatActivity {
                     mRadio2 = data.getBooleanExtra(CustomActivity3.EXTRA_RADIO_BUTTON_FEMALE, mRadio2);
                     mTimePicked = (Date) data.getSerializableExtra(CustomActivity3.EXTRA_TIME);
                     Log.d(LOG_TAG, "Time picked: " + mTimePicked);
+                }
+                break;
+            case REQUEST_CODE_A4:
+                if (resultCode == RESULT_OK) {
+                    mRating = data.getFloatExtra(CustomActivity4.EXTRA_RATING, mRating);
+                    mTimePicked2 = (Date) data.getSerializableExtra(CustomActivity4.EXTRA_TIME);
                 }
                 break;
         }
@@ -154,6 +162,24 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(CustomActivity3.EXTRA_TIME, mTimePicked);
         try {
             startActivityForResult(intent, REQUEST_CODE_A3);
+        } catch (android.content.ActivityNotFoundException exception) {
+            Toast.makeText(this, "There are no app installed to perform this request.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void callActivity4(View view) {
+        Intent intent = new Intent(this, CustomActivity4.class);
+        intent.putExtra(CustomActivity4.EXTRA_RATING, mRating);
+        intent.putExtra(CustomActivity4.EXTRA_TIME, mTimePicked2);
+        startActivityForResult(intent, REQUEST_CODE_A4);
+    }
+
+    public void callActivity4ViaOption() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.putExtra(CustomActivity4.EXTRA_RATING, mRating);
+        intent.putExtra(CustomActivity4.EXTRA_TIME, mTimePicked2);
+        try {
+            startActivityForResult(intent, REQUEST_CODE_A4);
         } catch (android.content.ActivityNotFoundException exception) {
             Toast.makeText(this, "There are no app installed to perform this request.", Toast.LENGTH_SHORT).show();
         }

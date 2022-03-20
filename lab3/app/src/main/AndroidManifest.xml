@@ -10,6 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lab3">
         <activity
+            android:name=".CustomActivity4"
+            android:exported="true"
+            android:label="Activity4">
+            <intent-filter android:label="Activity4">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".CustomActivity3"
             android:exported="true"
             android:label="Activity3">
