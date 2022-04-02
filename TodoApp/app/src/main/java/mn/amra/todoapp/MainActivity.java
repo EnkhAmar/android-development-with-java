@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             while (cursor.moveToNext()) {
                 task_id.add(cursor.getString(0));
                 task_task.add(cursor.getString(1));
-                task_status.add(cursor.getString(2))
+                task_status.add(cursor.getString(2));
                 task_due_date.add(cursor.getString(3));
             }
         }
