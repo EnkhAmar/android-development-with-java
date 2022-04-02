@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TodoApp</string>
+    <string name="task_name_hint">Task Name</string>
+    <string name="switch_status_text">Completed</string>
+    <string name="button_due_date">Due Date</string>
+    <string name="save">Save</string>
+</resources>
