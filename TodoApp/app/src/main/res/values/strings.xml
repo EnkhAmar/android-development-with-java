@@ -4,4 +4,6 @@
     <string name="switch_status_text">Completed</string>
     <string name="button_due_date">Due Date</string>
     <string name="save">Save</string>
+    <string name="create">Create</string>
+    <string name="delete">Delete</string>
 </resources>

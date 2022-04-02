@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class TaskActivity extends AppCompatActivity {
+public class CreateTaskActivity extends AppCompatActivity {
 
     private EditText textTask;
     private SwitchCompat completedStatus;
@@ -25,12 +25,12 @@ public class TaskActivity extends AppCompatActivity {
     private Calendar calendar;
     private DatePickerDialog datePickerDialog;
 
-    public static final String LOG_TAG = TaskActivity.class.getSimpleName();
+    public static final String LOG_TAG = CreateTaskActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_task);
+        setContentView(R.layout.activity_create_task);
 
         textTask = findViewById(R.id.edit_text_task);
         completedStatus = findViewById(R.id.switch_status);
@@ -38,12 +38,13 @@ public class TaskActivity extends AppCompatActivity {
     }
 
     public void handleSave(View view) {
-        DatabaseHelper dbHelper = new DatabaseHelper(TaskActivity.this);
+        DatabaseHelper dbHelper = new DatabaseHelper(CreateTaskActivity.this);
         dbHelper.addTask(
                 textTask.getText().toString().trim(),
                 completedStatus.isChecked(),
                 pickedDate
         );
+        finish();
     }
 
     public void openDatePickerDialog(View view) {
@@ -51,7 +52,7 @@ public class TaskActivity extends AppCompatActivity {
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
         int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
-        datePickerDialog = new DatePickerDialog(TaskActivity.this, new DatePickerDialog.OnDateSetListener() {
+        datePickerDialog = new DatePickerDialog(CreateTaskActivity.this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int pYear, int pMonth, int pDay) {
                 String date_sting = pYear + "-" + (++pMonth) + "-" + pDay;

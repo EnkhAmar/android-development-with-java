@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -14,6 +15,7 @@ import java.util.Date;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private Context context;
+    private static final String LOG_TAG = DatabaseHelper.class.getSimpleName();
     private static final String DATABASE_NAME = "Todo.db";
     private static final int DATABASE_VERSION = 1;
     private static final String TABLE_NAME = "todos";
@@ -70,5 +72,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor = db.rawQuery(query, null);
         }
         return cursor;
+    }
+
+    void updateTodo(String row_id, String task, Boolean status, Date due_date) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(COLUMN_TASK, task);
+        contentValues.put(COLUMN_STATUS, status);
+        contentValues.put(COLUMN_DUE_DATE, String.valueOf(due_date));
+
+        long result = db.update(TABLE_NAME, contentValues, "_id=?", new String[]{row_id});
+        Log.d(LOG_TAG, String.valueOf(result) + " " + row_id);
+        if (result == -1) {
+            Toast.makeText(context, "Failed to update!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Saved successfully!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    void deleteTodo(String row_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.delete(TABLE_NAME, "_id=?", new String[]{row_id});
+        if (result == -1) {
+            Toast.makeText(context, "Failed to update!", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Deleted successfully!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

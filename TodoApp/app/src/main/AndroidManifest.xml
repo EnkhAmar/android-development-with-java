@@ -10,12 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TodoApp">
         <activity
-            android:name=".TaskActivity"
+            android:name=".EditTaskActivity"
+            android:exported="false"
+            android:label="Edit Task"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".CreateTaskActivity"
+            android:exported="false"
             android:label="Create A Task"
-            android:parentActivityName=".MainActivity"
-            android:exported="false">
-
-        </activity>
+            android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">
