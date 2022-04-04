@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -67,6 +68,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.TaskViewHo
         holder.task_status_txt.setText(handleTaskStatusValue(completed));
         if (date != null) {
             holder.task_due_date_txt.setText(date_msg);
+            Date now = new Date();
+            Log.d(LOG_TAG, now.toString() + " --- " +  date.toString());
+            if (date.before(now)) {
+                holder.task_due_date_txt.setTextColor(ContextCompat.getColor(context, R.color.warning));
+            }
         } else {
             holder.task_due_date_txt.setText(NO_DUE_DATE);
             holder.task_due_date_txt.setTextColor(ContextCompat.getColor(context, R.color.gray));

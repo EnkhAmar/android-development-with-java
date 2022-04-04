@@ -24,6 +24,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 //    public static final String COLUMN_DESCRIPTION = "description";
     private static final String COLUMN_STATUS = "status";
     private static final String COLUMN_DUE_DATE = "due_date";
+    public static final String QUERY_ALL = "SELECT * FROM " + TABLE_NAME;
+    public static final String QUERY_ONLY_COMPLETED = "SELECT * FROM " + TABLE_NAME + " WHERE status=1";
+    public static final String QUERY_ONLY_NOT_COMPLETED = "SELECT * FROM " + TABLE_NAME + " WHERE STATUS=0";
 
 
     public DatabaseHelper(@Nullable Context context) {
@@ -63,8 +66,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    Cursor getTodos() {
-        String query = "SELECT * FROM " + TABLE_NAME;
+    Cursor getTodos(String query) {
+        if (query == null)
+            query = DatabaseHelper.QUERY_ALL;
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = null;
