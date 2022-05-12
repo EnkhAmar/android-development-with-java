@@ -17,4 +17,9 @@
     <string name="pre_button"><![CDATA[<<]]></string>
     <string name="next_button"><![CDATA[>>]]></string>
     <string name="add">+</string>
+    <string name="activity_add_word_name">Үг нэмэх</string>
+    <string name="insert_text">Нэмэх</string>
+    <string name="cancel_btn">Болих</string>
+    <string name="error_text_empty_foreign">Гадаад үг оруулна уу!</string>
+    <string name="error_text_empty_mongolian">Монгол үг оруулна уу!</string>
 </resources>

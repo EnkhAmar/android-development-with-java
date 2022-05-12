@@ -25,6 +25,11 @@ public class MainActivity extends AppCompatActivity {
 //        mForeignText = findViewById(R.id.foreign);
     }
 
+    public void navigateToAddWordActivity(View view) {
+        Intent intent = new Intent(this, AddWordActivity.class);
+        startActivity(intent);
+    }
+
 
 //    public void handleButtonClick(View view) {
 //        Intent intent = new Intent();

@@ -106,6 +106,7 @@
             android:textStyle="bold"
             android:text="@string/add"
             android:backgroundTint="@color/main_blue"
+            android:onClick="navigateToAddWordActivity"
             />
 
         <Button

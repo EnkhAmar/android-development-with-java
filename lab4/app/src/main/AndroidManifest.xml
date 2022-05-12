@@ -11,7 +11,12 @@
         android:theme="@style/Theme.Lab4">
         <activity
             android:name=".AddWordActivity"
-            android:exported="false" />
+            android:label="@string/activity_add_word_name"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="mn.amra.lab4.MainActivity"/>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -4,6 +4,114 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="20dp"
     tools:context=".AddWordActivity">
+
+    <LinearLayout
+        android:id="@+id/foreign_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/back_border"
+        app:layout_constraintBottom_toTopOf="@id/divider_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="12dp"
+        >
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/us_flag" />
+        <EditText
+            android:id="@+id/edit_text_foreign"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textSize="32sp"
+            android:inputType="text"
+            android:hint="@string/foreign_word"
+            android:layout_marginLeft="20dp"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mongolian_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/back_border"
+        app:layout_constraintTop_toBottomOf="@id/divider_view"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="12dp"
+        >
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/mongolian_flag" />
+        <EditText
+            android:id="@+id/edit_text_mongolian"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:textSize="32sp"
+            android:inputType="text"
+            android:hint="@string/mongolian_word"
+            android:layout_marginLeft="20dp"
+            />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider_view"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginHorizontal="20dp"
+        android:background="@android:color/darker_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/mongolian_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/insert_btn"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:text="@string/insert_text"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:background="@drawable/ltr_gradient"
+            android:layout_marginHorizontal="20dp"
+            android:onClick="handleInsertWord"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cancel_btn"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:text="@string/cancel_btn"
+            android:maxLines="1"
+            android:textColor="@color/white"
+            android:background="@drawable/rtl_gradient"
+            android:layout_marginHorizontal="20dp"
+            android:onClick="handleCancel"
+            />
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
