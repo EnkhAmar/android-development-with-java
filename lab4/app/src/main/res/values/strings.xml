@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">lab4</string>
+    <string name="edit">ЗАСАХ</string>
+    <string name="delete">УСТГАХ</string>
+    <string name="next">next</string>
+    <string name="previous">prev</string>
+    <string name="preference_file_key">mode</string>
+    <string name="cancel">Cancel</string>
+    <string name="change_mode">Change Mode</string>
+    <string name="onlyMongolian">Монгол үгийг ил харуулах</string>
+    <string name="both">Хоёуланг нь ил харуулах</string>
+    <string name="onlyForeign">Гадаад үгийг ил харуулах</string>
+    <string name="ok">ok</string>
+    <string name="csvfile">Add from csv file</string>
+    <string name="foreign_word">Гадаад үг</string>
+    <string name="mongolian_word">Монгол үг</string>
+    <string name="pre_button"><![CDATA[<<]]></string>
+    <string name="next_button"><![CDATA[>>]]></string>
+    <string name="add">+</string>
 </resources>
