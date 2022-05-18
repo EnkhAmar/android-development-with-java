@@ -22,4 +22,7 @@
     <string name="cancel_btn">Болих</string>
     <string name="error_text_empty_foreign">Гадаад үг оруулна уу!</string>
     <string name="error_text_empty_mongolian">Монгол үг оруулна уу!</string>
+    <string name="button_text_edit">ЗАСАХ</string>
+    <string name="content_description_foreign">USA flag</string>
+    <string name="mongolian_flag">Mongolian flag</string>
 </resources>

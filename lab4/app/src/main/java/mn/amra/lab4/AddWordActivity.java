@@ -20,13 +20,16 @@ public class AddWordActivity extends AppCompatActivity {
     }
 
     public void handleCancel(View view) {
-
         finish();
     }
 
     public void handleInsertWord(View view) {
         if (validateForm()) {
-
+            DatabaseHelper dbHelper = new DatabaseHelper(AddWordActivity.this);
+            dbHelper.addWord(
+                    mForeignText.getText().toString().trim(),
+                    mMongolianText.getText().toString().trim()
+            );
             finish();
         }
     }

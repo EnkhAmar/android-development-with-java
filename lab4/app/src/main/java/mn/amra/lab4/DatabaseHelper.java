@@ -21,6 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COLUMN_BOOKMARKED = "bookmarked";
     public static final String QUERY_ALl = "SELECT * FROM " + TABLE_NAME;
     public static final String QUERY_ONLY_BOOKMARKED = "SELECT * FROM " + TABLE_NAME + " WHERE bookmarked = 1";
+    public static final String QUERY_FIRST = "SELECT * FROM " + TABLE_NAME + " LIMIT 1";
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -87,6 +88,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             query = QUERY_ALl;
         SQLiteDatabase db = this.getReadableDatabase();
 
+        Cursor cursor = null;
+        if (db != null) {
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
+    }
+
+    Cursor getFirstWord(String query) {
+        SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
         if (db != null) {
             cursor = db.rawQuery(query, null);
