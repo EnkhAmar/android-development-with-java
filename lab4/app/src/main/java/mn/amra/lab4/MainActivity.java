@@ -3,11 +3,13 @@ package mn.amra.lab4;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,6 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -36,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private static final int DIRECTION_NEXT = 2;
     public static final int REQUEST_CODE = 1;
     public static final int REQUEST_CODE_UPDATE = 2;
+    public static final int REQUEST_CODE_FILE = 3;
     public static final int MODE_DEFAULT = 1;
     public static final int MODE_FOREIGN_ONLY = 2;
     public static final int MODE_MN_ONLY = 3;
@@ -57,6 +62,20 @@ public class MainActivity extends AppCompatActivity {
 //            recreate();
             cursor = populateWithData();
             updateTextViewWordPair();
+        } else if (requestCode == REQUEST_CODE_FILE) {
+            Uri file_uri = data.getData();
+            BufferedReader fReader;
+            InputStream inputStream = null;
+            String line;
+            while ((line = fReader.readLine()) != null) {
+                String[] values = line.split(COMMA_DELIMITER);
+                records.add(Arrays.asList(values));
+            }
+            try {
+
+            } catch (Exception exception) {
+
+            }
         }
     }
 
@@ -187,6 +206,14 @@ public class MainActivity extends AppCompatActivity {
             case R.id.mode_only_mongolian:
                 setMode(MODE_MN_ONLY);
                 break;
+            case R.id.option_upload_file:
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("*/*");
+                try {
+                    startActivityForResult(intent, REQUEST_CODE_FILE);
+                } catch (ActivityNotFoundException exception) {
+                    Toast.makeText(this, "No suitable File Manager was found.", Toast.LENGTH_SHORT).show();
+                }
             default:
                 return super.onOptionsItemSelected(item);
         }

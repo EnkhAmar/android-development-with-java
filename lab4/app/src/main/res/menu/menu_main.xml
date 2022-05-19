@@ -4,4 +4,5 @@
         android:title="Зэрэг харах" />
     <item android:id="@+id/mode_only_foreign" android:title="Зөвхөн гадаад үг" />
     <item android:id="@+id/mode_only_mongolian" android:title="Зөвхөн монгол үг" />
+    <item android:id="@+id/option_upload_file" android:title="Файлаас оруулах" />
 </menu>
