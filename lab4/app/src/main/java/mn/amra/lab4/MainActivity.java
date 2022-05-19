@@ -1,11 +1,14 @@
 package mn.amra.lab4;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.database.CursorIndexOutOfBoundsException;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +21,22 @@ public class MainActivity extends AppCompatActivity {
     private int currentIndex = 0;
     public SharedPreferences sp;
     private DatabaseHelper dbHelper;
+    private Cursor cursor;
+
     private String word_id = "", word_foreign = "", word_mongolia = "", word_bookmarked = "";
+
+    private static final String LOG_TAG = MainActivity.class.getSimpleName();
+    private static final int DIRECTION_PREVIOUS = 1;
+    private static final int DIRECTION_NEXT = 2;
+    public static final int REQUEST_CODE = 1;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_CODE) {
+            recreate();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,47 +47,81 @@ public class MainActivity extends AppCompatActivity {
         mMongolianText = findViewById(R.id.text_mongolian);
 
         dbHelper = new DatabaseHelper(MainActivity.this);
+        cursor = populateWithData();
 
-        populateWithData();
+        updateTextViewWordPair();
     }
 
     public void navigateToAddWordActivity(View view) {
         Intent intent = new Intent(this, AddWordActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, REQUEST_CODE);
     }
 
-    private void populateWithData() {
-        Cursor cursor = dbHelper.getWords(DatabaseHelper.QUERY_ALl);
-        if (cursor.getCount() > 0) {
-            cursor.moveToNext();
-            word_id = cursor.getString(0);
-            word_foreign = cursor.getString(1);
-            word_mongolia = cursor.getString(2);
-            word_bookmarked = cursor.getString(3);
+    private void setWordPairData(Cursor cursor) {
+        word_id = cursor.getString(0);
+        word_foreign = cursor.getString(1);
+        word_mongolia = cursor.getString(2);
+        word_bookmarked = cursor.getString(3);
+    }
 
-//            mForeignText.setText(word_foreign);
-//            mMongolianText.setText(word_mongolia);
+    private void updateTextViewWordPair() {
+        mForeignText.setText(word_foreign);
+        mMongolianText.setText(word_mongolia);
+    }
+
+    private Cursor populateWithData() {
+        Cursor cursor = dbHelper.getWords(DatabaseHelper.QUERY_ALl);
+        if (cursor.getCount() == 0) {
+            Toast.makeText(this, "No data ...", Toast.LENGTH_SHORT).show();
+        } else {
+            cursor.moveToNext();
+            setWordPairData(cursor);
+        }
+        return cursor;
+    }
+
+    private Cursor getWordPair(int direction) {
+        if (direction == DIRECTION_PREVIOUS)
+            cursor.moveToPrevious();
+        else if (direction == DIRECTION_NEXT)
+            cursor.moveToNext();
+        try {
+            setWordPairData(cursor);
+        } catch (CursorIndexOutOfBoundsException exception) {
+            if (direction == DIRECTION_NEXT) {
+//                Toast.makeText(this, "This is the last word", Toast.LENGTH_SHORT).show();
+//                cursor.moveToPrevious();
+                cursor.moveToFirst();
+            } else {
+//                Toast.makeText(this, "This is the first word", Toast.LENGTH_SHORT).show();
+//                cursor.moveToNext();
+                cursor.moveToLast();
+            }
+            setWordPairData(cursor);
+        } catch (Exception exception) {
+            Log.d(LOG_TAG, exception.getMessage());
+        }
+        updateTextViewWordPair();
+        return cursor;
+    }
+
+    public void handleButtonClick(View view) {
+//        Intent intent = new Intent();
+//        intent.setClass(getBaseContext());
+        switch (view.getId()) {
+            case R.id.prev_btn:
+                getWordPair(DIRECTION_PREVIOUS);
+                return;
+            case R.id.next_btn:
+                getWordPair(DIRECTION_NEXT);
+                return;
+            case R.id.edit_btn:
+                    
+                return;
+            case R.id.del_btn:
+                return;
+            default:
+                return;
         }
     }
-
-
-
-//    public void handleButtonClick(View view) {
-//        Intent intent = new Intent();
-////        intent.setClass(getBaseContext());
-//        switch (view.getId()) {
-//            case R.id.previousButton:
-//                return;
-//            case R.id.nextButton:
-//                return;
-//            case R.id.deleteButton:
-//                return;
-//            case R.id.editButton:
-//                return;
-//            case R.id.addButton:
-//                return;
-//            default:
-//                return;
-//        }
-//    }
 }

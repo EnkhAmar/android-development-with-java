@@ -93,8 +93,10 @@
             android:maxLines="1"
             android:textColor="@color/white"
             android:background="@drawable/ltr_gradient"
+            android:onClick="handleButtonClick"
             />
         <Button
+            android:id="@+id/edit_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -114,6 +116,7 @@
             />
 
         <Button
+            android:id="@+id/del_btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -132,6 +135,7 @@
             android:maxLines="1"
             android:textColor="@color/white"
             android:background="@drawable/rtl_gradient"
+            android:onClick="handleButtonClick"
             />
     </LinearLayout>
 

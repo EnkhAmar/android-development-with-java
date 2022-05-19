@@ -16,8 +16,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String TABLE_NAME = "words";
     private static final String COLUMN_ID = "_id";
-    private static final String COLUMN_FOREIGN = "foreign";
-    private static final String COLUMN_MONGOLIAN = "mongolian";
+    private static final String COLUMN_FOREIGN = "word_foreign";
+    private static final String COLUMN_MONGOLIAN = "word_mongolian";
     private static final String COLUMN_BOOKMARKED = "bookmarked";
     public static final String QUERY_ALl = "SELECT * FROM " + TABLE_NAME;
     public static final String QUERY_ONLY_BOOKMARKED = "SELECT * FROM " + TABLE_NAME + " WHERE bookmarked = 1";
