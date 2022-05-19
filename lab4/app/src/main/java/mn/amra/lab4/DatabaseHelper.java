@@ -73,7 +73,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    void deleteWord(String primary_key, String foreign, String mongolian) {
+    void deleteWord(String primary_key) {
         SQLiteDatabase db = this.getWritableDatabase();
         long result = db.delete(TABLE_NAME, "_id=?", new String[]{primary_key});
         if (result == -1) {

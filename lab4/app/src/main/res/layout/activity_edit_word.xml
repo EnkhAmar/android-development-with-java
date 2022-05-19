@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginHorizontal="20dp"
-    tools:context=".MainActivity">
+    tools:context=".EditWordActivity">
 
     <LinearLayout
         android:id="@+id/foreign_layout"
@@ -21,18 +21,18 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:contentDescription="@string/content_description_foreign"
             android:layout_gravity="center_vertical"
             android:src="@drawable/us_flag" />
-        <TextView
-            android:id="@+id/text_foreign"
+        <EditText
+            android:id="@+id/edit_text_foreign"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:textSize="32sp"
-            android:text="@string/foreign_word"
-            android:layout_marginStart="20dp"
+            android:inputType="text"
+            android:hint="@string/foreign_word"
+            android:layout_marginLeft="20dp"
             />
     </LinearLayout>
 
@@ -51,17 +51,17 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center_vertical"
-            android:contentDescription="@string/mongolian_flag"
             android:src="@drawable/mongolian_flag" />
-        <TextView
-            android:id="@+id/text_mongolian"
+        <EditText
+            android:id="@+id/edit_text_mongolian"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="1"
             android:textSize="32sp"
-            android:text="@string/mongolian_word"
-            android:layout_marginStart="20dp"
+            android:inputType="text"
+            android:hint="@string/mongolian_word"
+            android:layout_marginLeft="20dp"
             />
     </LinearLayout>
 
@@ -80,64 +80,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mongolian_layout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="40dp">
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/prev_btn"
+            android:id="@+id/update_btn"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:text="@string/pre_button"
+            android:text="@string/save_text"
             android:maxLines="1"
             android:textColor="@color/white"
             android:background="@drawable/ltr_gradient"
-            android:onClick="handleButtonClick"
-            />
-        <Button
-            android:id="@+id/edit_btn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:textStyle="bold"
-            android:text="@string/button_text_edit"
-            android:layout_marginHorizontal="5dp"
-            android:backgroundTint="@color/main_blue"
-            android:onClick="handleButtonClick"
-            />
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textStyle="bold"
-            android:text="@string/add"
-            android:backgroundTint="@color/main_blue"
-            android:onClick="navigateToAddWordActivity"
+            android:layout_marginHorizontal="20dp"
+            android:onClick="handleUpdateWord"
             />
 
-        <Button
-            android:id="@+id/del_btn"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:textStyle="bold"
-            android:text="@string/delete"
-            android:layout_marginHorizontal="5dp"
-            android:backgroundTint="@color/main_blue"
-            android:onClick="handleButtonClick"
-            />
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/next_btn"
+            android:id="@+id/cancel_btn"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:text="@string/next_button"
+            android:text="@string/cancel_btn"
             android:maxLines="1"
             android:textColor="@color/white"
             android:background="@drawable/rtl_gradient"
-            android:onClick="handleButtonClick"
+            android:layout_marginHorizontal="20dp"
+            android:onClick="handleCancel"
             />
     </LinearLayout>
 

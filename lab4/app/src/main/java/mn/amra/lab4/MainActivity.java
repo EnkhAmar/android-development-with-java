@@ -29,11 +29,19 @@ public class MainActivity extends AppCompatActivity {
     private static final int DIRECTION_PREVIOUS = 1;
     private static final int DIRECTION_NEXT = 2;
     public static final int REQUEST_CODE = 1;
+    public static final int REQUEST_CODE_UPDATE = 2;
+    public static final String EXTRA_WORD_ID = "mn.amra.lab4.extra.WORD_ID";
+    public static final String EXTRA_WORD_FOREIGN = "mn.amra.lab4.extra.WORD_FOREIGN";
+    public static final String EXTRA_WORD_MONGOLIAN = "mn.amra.lab4.extra.WORD_MONGOLIAN";
+    public static final String EXTRA_WORD_BOOKMARKED = "mn.amra.lab4.extra.WORD_BOOKMARKED";
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE) {
+            recreate();
+        } else if (requestCode == REQUEST_CODE_UPDATE) {
             recreate();
         }
     }
@@ -55,6 +63,14 @@ public class MainActivity extends AppCompatActivity {
     public void navigateToAddWordActivity(View view) {
         Intent intent = new Intent(this, AddWordActivity.class);
         startActivityForResult(intent, REQUEST_CODE);
+    }
+
+    public void navigateToEditWordActivity(View view) {
+        Intent intent = new Intent(this, EditWordActivity.class);
+        intent.putExtra(EXTRA_WORD_ID, word_id);
+        intent.putExtra(EXTRA_WORD_FOREIGN, word_foreign);
+        intent.putExtra(EXTRA_WORD_MONGOLIAN, word_mongolia);
+        startActivityForResult(intent, REQUEST_CODE_UPDATE);
     }
 
     private void setWordPairData(Cursor cursor) {
@@ -116,9 +132,11 @@ public class MainActivity extends AppCompatActivity {
                 getWordPair(DIRECTION_NEXT);
                 return;
             case R.id.edit_btn:
-                    
+                navigateToEditWordActivity(view);
                 return;
             case R.id.del_btn:
+                dbHelper.deleteWord(word_id);
+                recreate();
                 return;
             default:
                 return;

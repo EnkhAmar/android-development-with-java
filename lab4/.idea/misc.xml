@@ -10,7 +10,8 @@
         <entry key="app/src/main/res/drawable/ltr_gradient.xml" value="0.115" />
         <entry key="app/src/main/res/drawable/rtl_gradient.xml" value="0.1955" />
         <entry key="app/src/main/res/layout/activity_add_word.xml" value="0.33" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_edit_word.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1308411214953271" />
       </map>
     </option>
   </component>
