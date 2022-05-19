@@ -3,6 +3,7 @@ package mn.amra.lab4;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -30,10 +31,14 @@ public class MainActivity extends AppCompatActivity {
     private static final int DIRECTION_NEXT = 2;
     public static final int REQUEST_CODE = 1;
     public static final int REQUEST_CODE_UPDATE = 2;
+    public static final int MODE_DEFAULT = 1;
+    public static final int MODE_FOREIGN_ONLY = 2;
+    public static final int MODE_MN_ONLY = 3;
     public static final String EXTRA_WORD_ID = "mn.amra.lab4.extra.WORD_ID";
     public static final String EXTRA_WORD_FOREIGN = "mn.amra.lab4.extra.WORD_FOREIGN";
     public static final String EXTRA_WORD_MONGOLIAN = "mn.amra.lab4.extra.WORD_MONGOLIAN";
     public static final String EXTRA_WORD_BOOKMARKED = "mn.amra.lab4.extra.WORD_BOOKMARKED";
+    public static final String PREFERENCE_FILE_KEY = "mn.amra.lab4.PREFERENCE_FILE_KEY";
 
 
     @Override
@@ -50,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        getMode();
+        getMode();
         mForeignText = findViewById(R.id.text_foreign);
         mMongolianText = findViewById(R.id.text_mongolian);
 
@@ -58,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         cursor = populateWithData();
 
         updateTextViewWordPair();
+        Toast.makeText(this, "MODE " + mode, Toast.LENGTH_SHORT).show();
     }
 
     public void navigateToAddWordActivity(View view) {
@@ -141,5 +147,17 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return;
         }
+    }
+
+    private void getMode() {
+        sp = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        mode = sp.getInt("mode", MODE_DEFAULT);
+    }
+
+    private void setMode() {
+        sp = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putInt("mode", mode);
+        editor.commit();
     }
 }
