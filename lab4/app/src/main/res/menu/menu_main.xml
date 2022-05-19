@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/mode_default"
+        android:title="Зэрэг харах" />
+    <item android:id="@+id/mode_only_foreign" android:title="Зөвхөн гадаад үг" />
+    <item android:id="@+id/mode_only_mongolian" android:title="Зөвхөн монгол үг" />
+</menu>

@@ -10,7 +10,11 @@ import android.database.Cursor;
 import android.database.CursorIndexOutOfBoundsException;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +23,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private int mode;
     private TextView mMongolianText, mForeignText;
+    private LinearLayout mLayoutMongolian, mLayoutForeign;
     private int currentIndex = 0;
     public SharedPreferences sp;
     private DatabaseHelper dbHelper;
@@ -45,9 +50,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CODE) {
-            recreate();
+//            recreate();
+            cursor = populateWithData();
+            updateTextViewWordPair();
         } else if (requestCode == REQUEST_CODE_UPDATE) {
-            recreate();
+//            recreate();
+            cursor = populateWithData();
+            updateTextViewWordPair();
         }
     }
 
@@ -55,15 +64,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getMode();
         mForeignText = findViewById(R.id.text_foreign);
         mMongolianText = findViewById(R.id.text_mongolian);
+        mLayoutForeign = findViewById(R.id.foreign_layout);
+        mLayoutMongolian = findViewById(R.id.mongolian_layout);
 
         dbHelper = new DatabaseHelper(MainActivity.this);
         cursor = populateWithData();
 
         updateTextViewWordPair();
-        Toast.makeText(this, "MODE " + mode, Toast.LENGTH_SHORT).show();
+        handleModeUpdate();
     }
 
     public void navigateToAddWordActivity(View view) {
@@ -128,8 +138,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleButtonClick(View view) {
-//        Intent intent = new Intent();
-//        intent.setClass(getBaseContext());
         switch (view.getId()) {
             case R.id.prev_btn:
                 getWordPair(DIRECTION_PREVIOUS);
@@ -149,15 +157,59 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void getMode() {
+    private void initializeMode() {
         sp = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         mode = sp.getInt("mode", MODE_DEFAULT);
     }
 
-    private void setMode() {
-        sp = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+    private void setMode(int mode) {
         SharedPreferences.Editor editor = sp.edit();
         editor.putInt("mode", mode);
         editor.commit();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.mode_default:
+                setMode(MODE_DEFAULT);
+                break;
+            case R.id.mode_only_foreign:
+                setMode(MODE_FOREIGN_ONLY);
+                break;
+            case R.id.mode_only_mongolian:
+                setMode(MODE_MN_ONLY);
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        handleModeUpdate();
+        return true;
+    }
+
+    private void handleModeUpdate() {
+        initializeMode();
+        switch (mode) {
+            case MODE_FOREIGN_ONLY:
+                mLayoutForeign.setVisibility(View.VISIBLE);
+                mLayoutMongolian.setVisibility(View.INVISIBLE);
+                return;
+            case MODE_MN_ONLY:
+                Log.d(LOG_TAG, "mn only");
+                mLayoutForeign.setVisibility(View.INVISIBLE);
+                mLayoutMongolian.setVisibility(View.VISIBLE);
+                return;
+            default:
+                mLayoutForeign.setVisibility(View.VISIBLE);
+                mLayoutMongolian.setVisibility(View.VISIBLE);
+                return;
+        }
     }
 }
